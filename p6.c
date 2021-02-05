@@ -2,6 +2,7 @@
 #include <omp.h>
 #include <ctype.h>
 #include <string.h>
+#include <strings.h>
 #define COUNT 10
 
 char search_words[20][COUNT] = {"The","around","graphics","from","by","be","any",
@@ -10,21 +11,11 @@ long counts[COUNT];
 int line_c = 0;
 
 int is_equal(char* a,const char* key, int ignore_case) {
-	char b[20];
-	strcpy(b,key);
-	int len_a = strlen(a),len_b = strlen(b);
-
-	if(len_a !=  len_b) {
+	if(strlen(a) !=  strlen(key)) {
 		return 0;
 	}
-	if(ignore_case != 0) {
-		int i;
-		for(i = 0; i < len_a; i++) {
-			a[i] = tolower(a[i]);
-			b[i] = tolower(b[i]);
-		}
-	}
-	return (strcmp(a,b) ==  0);
+	if(ignore_case != 0) return (strcasecmp(a, key) == 0);
+	return (strcmp(a, key) ==  0);
 }
 void read_word(char *temp, FILE *fp) {
 	int i = 0;
