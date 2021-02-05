@@ -11,9 +11,7 @@ long counts[COUNT];
 int line_c = 0;
 
 int is_equal(char* a,const char* key, int ignore_case) {
-	if(strlen(a) !=  strlen(key)) {
-		return 0;
-	}
+	if(strlen(a) !=  strlen(key)) return 0;
 	if(ignore_case != 0) return (strcasecmp(a, key) == 0);
 	return (strcmp(a, key) ==  0);
 }
